@@ -6,11 +6,18 @@ public class ThreadState {
                 () -> {
                 }
         );
-        System.out.println(first.getState());
+        Thread second = new Thread(
+                () -> {}
+        );
+        System.out.println(first.getState() + " First");
+        System.out.println(second.getState() + " Second");
         first.start();
-        while (first.getState() != Thread.State.TERMINATED) {
+        second.start();
+       if (first.getState() != Thread.State.TERMINATED) {
             System.out.println(first.getState());
-        }
-        System.out.println(first.getState());
+        } else if (second.getState() != Thread.State.TERMINATED) {
+           System.out.println(second.getState());
+       }
+        System.out.println("Работа завершена");
     }
 }
