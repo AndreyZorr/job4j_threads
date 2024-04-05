@@ -3,10 +3,12 @@ package ru.job4j;
 public final class Cache {
     private static Cache cache;
 
-    public static synchronized Cache getInstance() {
-        if (cache == null) {
-            cache = new Cache();
+    public static Cache getInstance() {
+        synchronized (Cache.class) {
+            if (cache == null) {
+                cache = new Cache();
+            }
+            return cache;
         }
-        return cache;
     }
 }
