@@ -14,7 +14,7 @@ public class SaveFile {
         StringBuffer output = new StringBuffer();
         try (InputStream input = new FileInputStream(file)) {
             int data;
-            while ((data = input.read()) > 0) {
+            while ((data = input.read()) != -1) {
                 if (filter.test((char) data)) {
                     output.append(data);
                 }
