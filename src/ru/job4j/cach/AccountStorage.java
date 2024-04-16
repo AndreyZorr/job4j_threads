@@ -28,13 +28,13 @@ public class AccountStorage {
         if (getByFromId.isEmpty() || getByToId.isEmpty()) {
             return false;
         }
-        Account accountsFromId = accounts.get(fromId);
-        Account accountsToId = accounts.get(toId);
-        if (accountsFromId.amount() < amount) {
+        int amountFrom = getByFromId.get().amount();
+        int amountTo = getByToId.get().amount();
+        if (amountFrom < amount) {
             return false;
         }
-        accounts.put(fromId, new Account(fromId, accountsFromId.amount() - amount));
-        accounts.put(toId, new Account(toId, accountsToId.amount() + amount));
+        accounts.put(fromId, new Account(fromId, amountFrom - amount));
+        accounts.put(toId, new Account(toId, amountTo + amount));
         return true;
 
     }
