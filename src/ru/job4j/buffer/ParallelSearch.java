@@ -18,7 +18,7 @@ public class ParallelSearch {
         );
         consumer.start();
 
-        final Thread consumer2 = new Thread(
+        final Thread producer = new Thread(
                 () -> {
                     for (int index = 0; index != 3; index++) {
                         try {
@@ -30,8 +30,8 @@ public class ParallelSearch {
                     }
                 }
         );
-        consumer2.start();
-        consumer2.join();
+        producer.start();
+        producer.join();
         consumer.interrupt();
     }
 }
