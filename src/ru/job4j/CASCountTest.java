@@ -2,20 +2,30 @@ package ru.job4j;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 class CASCountTest {
     @Test
-    public void whenCasc() {
-        CASCount casCount = new CASCount();
-        casCount.increment();
-        assertTrue("1", true);
-        casCount.increment();
-        assertTrue("2", true);
-        casCount.increment();
-        assertTrue("3", true);
-        casCount.increment();
-        assertFalse("9", false);
+    public void whenCasc() throws InterruptedException {
+        final CASCount casCount = new CASCount();
+        Thread thread1 = new Thread(
+                () -> {
+                    for (int i = 0; i < 100; i++) {
+                        casCount.increment();
+                    }
+                }
+        );
+        Thread thread2 = new Thread(
+                () -> {
+                    for (int i = 0; i < 100; i++) {
+                        casCount.increment();
+                    }
+                }
+        );
+        thread1.start();
+        thread2.start();
+        thread1.join();
+        thread2.join();
+        assertEquals(casCount.get(), 200);
     }
 }
