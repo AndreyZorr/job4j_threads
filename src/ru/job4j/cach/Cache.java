@@ -16,11 +16,7 @@ public class Cache {
     public boolean update(Base model) {
         return memory.computeIfPresent(model.id(), (id, stored) -> {
             if (stored.vesrion() != model.vesrion()) {
-                try {
                     throw new OptimisticException("Versions are not equal");
-                } catch (OptimisticException e) {
-                    throw new RuntimeException(e);
-                }
             }
             return new Base(id, model.name(), model.vesrion() + 1);
         }) != null;
