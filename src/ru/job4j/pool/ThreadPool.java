@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ThreadPool {
-    int size = Runtime.getRuntime().availableProcessors();
+    private final int size = Runtime.getRuntime().availableProcessors();
     private final List<Thread> threads = new LinkedList<>();
     private final SimpleBlockingQueue<Runnable> tasks = new SimpleBlockingQueue<>(size);
 
@@ -32,5 +32,14 @@ public class ThreadPool {
 
     public void shutdown() {
         threads.forEach(Thread::interrupt);
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        ThreadPool threadPool = new ThreadPool();
+        Runnable runnable = () -> System.out.println(Thread.currentThread().getName());
+        for (int i = 0; i < 20; i++) {
+            threadPool.work(runnable);
+        }
+        threadPool.shutdown();
     }
 }
