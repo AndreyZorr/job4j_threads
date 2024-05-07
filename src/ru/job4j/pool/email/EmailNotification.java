@@ -9,15 +9,12 @@ public class EmailNotification {
             Runtime.getRuntime().availableProcessors());
 
     public void emailTo(User user) {
-        pool.submit(new Runnable() {
-            @Override
-            public void run() {
+        pool.submit(() -> {
                 String subject = String.format("Notification" + user.username() + "to email" + user.email());
                 String body = String.format("add a new event to" + user.username());
                 send(subject, body, user.email());
-            }
-        });
-    }
+            });
+        }
 
     public void close() {
         pool.shutdown();
