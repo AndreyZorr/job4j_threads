@@ -29,7 +29,7 @@ public class Search<T> extends RecursiveTask<Integer> {
 
     @Override
     protected Integer compute() {
-        if (to - from <= 10) {
+        if (to - from < 10) {
             return findIndex();
         }
         int middle = (from + to) / 2;

@@ -1,7 +1,7 @@
 package ru.job4j.pool;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SearchTest {
 
@@ -35,4 +35,13 @@ class SearchTest {
         int ind = Search.findIndex(integers, 55);
         assertEquals(-1, ind);
     }
+
+   /** @Test
+    public void whenLastElement() {
+        Integer[] integers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        Integer search = 10;
+        int expectedIndex = 9;
+        int result = Search.findIndex(integers, search);
+        assertEquals(expectedIndex, result);
+    }**/
 }
