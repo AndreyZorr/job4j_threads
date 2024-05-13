@@ -1,28 +1,8 @@
-package ru.job4j.pool;
+package ru.job4j.pool.matrix;
 
 import java.util.concurrent.CompletableFuture;
 
-public class RolColSum {
-    public static class Sums {
-        private int rowSum;
-        private int colSum;
-
-        public int getRowSum() {
-            return rowSum;
-        }
-
-        public void setRowSum(int rowSum) {
-            this.rowSum = rowSum;
-        }
-
-        public int getColSum() {
-            return colSum;
-        }
-
-        public void setColSum(int colSum) {
-            this.colSum = colSum;
-        }
-    }
+public class RolColSum extends Sums {
 
     public static Sums[] sum(int[][] matrix) {
         int n = matrix.length;

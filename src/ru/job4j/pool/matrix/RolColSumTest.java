@@ -1,4 +1,4 @@
-package ru.job4j.pool;
+package ru.job4j.pool.matrix;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,9 +13,9 @@ class RolColSumTest {
                 {4, 5, 6},
                 {7, 8, 9}
         };
-        RolColSum.Sums[] result = RolColSum.sum(matrix);
-        assertEquals(6, result[0].getRowSum());
-        assertEquals(12, result[0].getColSum());
+        Sums[] expected = RolColSum.sum(matrix);
+        assertEquals(expected[0].getRowSum(), 6);
+        assertEquals(expected[0].getColSum(), 12);
     }
 
     @Test
@@ -25,8 +25,8 @@ class RolColSumTest {
                 {4, 5, 6},
                 {7, 8, 9}
         };
-        RolColSum.Sums[] result = RolColSum.asyncSum(matrix);
-        assertEquals(6, result[0].getRowSum());
-        assertEquals(12, result[0].getColSum());
+        Sums[] expected = RolColSum.asyncSum(matrix);
+        assertEquals(expected[0].getRowSum(), 6);
+        assertEquals(expected[0].getColSum(), 12);
     }
 }
