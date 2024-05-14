@@ -2,7 +2,7 @@ package ru.job4j.pool.matrix;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 
 class RolColSumTest {
 
@@ -13,9 +13,14 @@ class RolColSumTest {
                 {4, 5, 6},
                 {7, 8, 9}
         };
-        Sums[] expected = RolColSum.sum(matrix);
-        assertEquals(expected[0].getRowSum(), 6);
-        assertEquals(expected[0].getColSum(), 12);
+        Sums[] result = RolColSum.sum(matrix);
+        Sums[] expected = {
+                new Sums(6, 12),
+                new Sums(15, 15),
+                new Sums(24, 18)
+        };
+        assertArrayEquals(expected, result);
+
     }
 
     @Test
@@ -25,8 +30,12 @@ class RolColSumTest {
                 {4, 5, 6},
                 {7, 8, 9}
         };
-        Sums[] expected = RolColSum.asyncSum(matrix);
-        assertEquals(expected[0].getRowSum(), 6);
-        assertEquals(expected[0].getColSum(), 12);
+        Sums[] result = RolColSum.asyncSum(matrix);
+        Sums[] expected = {
+                new Sums(6, 12),
+                new Sums(15, 15),
+                new Sums(24, 18)
+        };
+        assertArrayEquals(expected, result);
     }
 }
